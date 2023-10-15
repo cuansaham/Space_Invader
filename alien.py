@@ -5,12 +5,12 @@ import random
 class Alien(pygame.sprite.Sprite):
     def __init__(self,x,y):
         super().__init__()
-        self.image = pygame.Surface([40,25])
+        self.image = pygame.Surface([30,20])
         self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.speed = 2
+        self.speed = 1
 
     direction = 1
 
