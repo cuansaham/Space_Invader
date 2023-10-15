@@ -4,6 +4,7 @@ from player import Player
 from settings import WHITE,RED,GREEN,BLACK,WIDTH,HEIGHT
 from alien import Alien
 from bullet import Bullet
+from gamescreen import GameScreen
 
 # Initialize pygame
 pygame.init()
@@ -36,6 +37,8 @@ for alien in aliens:
 
 player_bullets = pygame.sprite.Group()
 alien_bullets = pygame.sprite.Group()
+game_screen = GameScreen(screen)
+game_screen.show_start_screen()
 
 running = True
 while running:
@@ -85,6 +88,16 @@ while running:
     hits = pygame.sprite.spritecollide(player, aliens, False)
     if hits: # If player gets hit by an alien
         running = False 
+    
+    if len(aliens) == 0:
+        running = False
+    
+    if not running:
+        if len(aliens) == 0:
+            game_screen.show_victory_screen()
+        else :
+            game_screen.show_game_over_screen()
+        game_screen.show_start_screen()
 
     screen.fill(BLACK)
     all_sprites.draw(screen)
