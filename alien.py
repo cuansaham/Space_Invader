@@ -3,16 +3,16 @@ from settings import RED,WIDTH,HEIGHT
 import random
 
 class Alien(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self,x,y):
         super().__init__()
         self.image = pygame.Surface([40,25])
         self.image.fill(RED)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, WIDTH -40)
-        self.rect.y = random.randint(-100, -40)
-        self.speed = random.randint(1,3)
+        self.rect.x = x
+        self.rect.y = y
+        self.speed = 2
+
+    direction = 1
+
     def update(self):
-        self.rect.y += self.speed
-        if self.rect.y > HEIGHT:
-            self.rect.y = random.randint(-100, -40)
-            self.rect.x = random.randint(0, WIDTH -40)
+        self.rect.x += self.speed * Alien.direction
